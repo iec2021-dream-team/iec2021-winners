@@ -46,10 +46,13 @@ node ./ to
 - QR Code API
 
 	QR Pay with Points
+
 	http://localhost:8080/qr/qrpoints?id=100123456
 		
 	QR Pay with Cash
+
     http://localhost:8080/qr/payqr?id=100123456
+
 
 #### Octa
 - We rely on Octa to give us the user's student ID when they authenticate for these fields
