@@ -1,6 +1,17 @@
 const mysql = require('mysql')
 const config = require('./config.js')
-// connect
+
+/*
+    Database and promise rejection handling 
+    Handles queries and flow of application
+
+    Does connecting and disconnecting from the database 
+    Import this module 
+    db = new Database() 
+    db.query(`SELECT * FROM *`)
+    db.close()
+
+*/
 
 class Database {
     constructor() {
@@ -25,5 +36,7 @@ class Database {
         } );
     }
 }
+
+// Export the class 
 
 module.exports = Database

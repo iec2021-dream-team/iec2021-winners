@@ -1,9 +1,4 @@
-// TODO:
-// database connect
-// handle get request to pay
-// determine if points or money
-// return payment status and balances (json)
-
+// Connect to database and pay using the users reward point balance 
 const Database = require("../../database/db")
 
 function CalculatePoints(amount) {
@@ -26,14 +21,15 @@ module.exports = (req, res, next) => {
             if(rows) {
                 let points = Number(rows[0].points)
                 let balance = rows[0].balance
-                //
+                // check if they have enough
                 if(points >= amount) {
+                    // pay with the points and update sql
                     let new_points = points - amount
                     db.query(`UPDATE student_wallet SET points = ${new_points} WHERE student_id = ${id}`).then(rows => {
                         db.close();
                         res.json({success: true, balance: balance, points: new_points, points_earned: 0, message:'point purchase success!'})
                     });
-                } else {
+                } else { // fail 
                     db.close();
                     res.json({success: false, required_points: amount-points, message:'insufficient points'})
                 }

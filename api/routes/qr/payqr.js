@@ -4,6 +4,8 @@ var fs = require("fs");
 
 //test: http://localhost:8080/qr/payqr?id=100123456
 
+// Module creates headers and handles downloading of the image 
+
 module.exports = (req, res, next) => {
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
     res.header("Access-Control-Allow-Origin", "*");
@@ -12,6 +14,7 @@ module.exports = (req, res, next) => {
     let queryid = req.query.id;
     let direct = 'http://192.53.121.221:8080/payment/pay?id='+queryid+'&amount=100';
 
+    // generate image
     qrcode.toDataURL(direct, function(err, url) {
         //console.log(url)
         tpath = path.join(__dirname+'/code.html');

@@ -12,6 +12,7 @@ module.exports = (req, res, next) => {
     let queryid = req.query.id;
     let direct = 'http://192.53.121.221:8080/payment/pointpay?id='+queryid+'&amount=100';
 
+    // generate image
     qrcode.toDataURL(direct, function(err, url) {
         //console.log(url)
         tpath = path.join(__dirname+'/code.html');

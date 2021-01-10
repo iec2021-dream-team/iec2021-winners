@@ -1,6 +1,14 @@
 const express = require('express')
 const sql = require('./database/db.js')
 
+/*
+    Inital app setup
+    Configures the routers and port bindings for the app
+    Also handles error pages
+    Author: Eric Whalls
+
+*//
+
 const app = express()
 const port = process.env.PORT || 8080
 const routes = require('./routes')
