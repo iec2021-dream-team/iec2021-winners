@@ -11,7 +11,10 @@
 
 #### Run Application
 
-- API can be run by running node ./ to enter index.js in the api directory 
+- API can be run by running:
+node ./ to 
+
+- This will enter index.js in the api directory 
 
 #### API Functionality: 
 
@@ -19,19 +22,29 @@
 - API relies on knowing the student ID for the student in question, due to time constraints we use this as the session id/key and do not authenticate beyond this point.
 
 - Payment API
+
+	
 	Process Transactions
+	
 	http://localhost:8080/payment/pay?id=100123456&amount=100
 		
+	
 	Get balance and points 
+	
 	http://localhost:8080/payment/balance?id=100123456
 		
+	
 	Spend Points 
+	
 	http://localhost:8080/payment/pointpay?id=100123456&amount=100
 		
+	
 	Refill Balance 
+	
 	http://localhost:8080/payment/refill?id=100123456&amount=100
 
 - QR Code API
+
 	QR Pay with Points
 	http://localhost:8080/qr/qrpoints?id=100123456
 		
