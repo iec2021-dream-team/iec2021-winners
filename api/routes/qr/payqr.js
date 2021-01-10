@@ -15,11 +15,11 @@ module.exports = (req, res, next) => {
     qrcode.toDataURL(direct, function(err, url) {
         //console.log(url)
         tpath = path.join(__dirname+'/code.html');
-        console.log(tpath)
+        //console.log(tpath)
         //
         fs.readFile(tpath, {encoding: 'utf-8'}, function(err, data) {
             data = data.replace(/##qUrl/g, url);
-            console.log(data)
+            //console.log(data)
             res.send(data)
         });
     });
