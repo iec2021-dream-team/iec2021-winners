@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     ////
     let queryid = req.query.id;
-    let direct = 'http://192.53.121.221:8080/payment/pointpay?id='+queryid
+    let direct = 'http://192.53.121.221:8080/payment/pointpay?id='+queryid+'&amount=100';
 
     qrcode.toDataURL(direct, function(err, url) {
         //console.log(url)

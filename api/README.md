@@ -1,6 +1,6 @@
 ## API README
 
-#### Project Setup
+### Project Setup
 
 - API REST service uses express and the router for simplicity
 - Package dependancies found in package.json (run npm init)
@@ -16,10 +16,11 @@ node ./ to
 
 - This will enter index.js in the api directory 
 
-#### API Functionality: 
+### API Functionality: 
 
 **notes**
 - API relies on knowing the student ID for the student in question, due to time constraints we use this as the session id/key and do not authenticate beyond this point.
+- The QR Code generator is currently hardcoded for amount=100 unless the client side changes this request header in the returned QR URL
 
 - Payment API
 
@@ -54,7 +55,7 @@ node ./ to
     http://localhost:8080/qr/payqr?id=100123456
 
 
-#### Octa
+### Octa
 - We rely on Octa to give us the user's student ID when they authenticate for these fields
 
 ### Purchases
