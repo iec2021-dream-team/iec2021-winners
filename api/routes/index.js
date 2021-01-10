@@ -2,7 +2,6 @@
 const routes = require('express').Router();
 
 const payment = require('./payment')
-const balance = require('./balances');
 
 // note could use body parser for post 
 
@@ -18,6 +17,5 @@ routes.get('/', (req, res) => {
 });
 
 routes.use('/payment', payment)
-//routes.use('/balances', balance)
 
 module.exports = routes;
