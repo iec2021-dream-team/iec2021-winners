@@ -2,6 +2,7 @@
 const routes = require('express').Router();
 
 const payment = require('./payment')
+const qrcode = require('./qr')
 
 // note could use body parser for post 
 
@@ -17,5 +18,6 @@ routes.get('/', (req, res) => {
 });
 
 routes.use('/payment', payment)
+routes.use('/qr', qrcode)
 
 module.exports = routes;
