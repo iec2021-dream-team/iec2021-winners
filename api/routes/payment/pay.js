@@ -12,19 +12,32 @@ function CalculatePoints(amount) {
     return Math.round(points) 
 }
 
-http://localhost:8080/payment/balance?id=100123456&amount=100
+http://localhost:8080/payment/pay?id=100123456&amount=100
 
 module.exports = (req, res, next) => {
     try {
-        let id = req.params.id
-        let amount = Number(req.params.amount)
-        let points = CalculatePoints(amount)
+        let id = req.query.id;
+        let amount = Number(req.query.amount);
+        //let points = CalculatePoints(amount)
 
         // get the current 
-        var db = new Database() 
-        db.query(`SELECT balance FROM student_wallet WHERE id=${id}`).then( rows => {
+        var db = new Database();
+        db.query(`SELECT balance, points FROM student_wallet WHERE student_id = ${id}`).then( rows => {
             if(rows) {
-               //todo check if balance is enough, take away, update the table, give points 
+                let balance = Number(rows[0].balance)
+                let prev_points = Number(rows[0].points)
+                if(balance >= amount) {
+                    let new_balance = balance - amount;
+                    let points = CalculatePoints(amount)
+                    let new_points = prev_points + points
+                    db.query(`UPDATE student_wallet SET balance = ${new_balance}, points = ${new_points} WHERE student_id = ${id}`).then(rows => {
+                        db.close();
+                        res.json({success: true, balance: new_balance, points: new_points, points_earned: points, message:'purchase success!'})
+                    });
+                } else {
+                    db.close();
+                    res.json({success: false, required_amount: amount-balance, message:'insufficient funds'})
+                }
             }
         });
         
